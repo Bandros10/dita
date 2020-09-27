@@ -5,13 +5,13 @@ ABSEN
 @section('content')
 <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-        <a class="nav-link active" href="#tawasul" role="tab" data-toggle="tab">Tawasul </a>
+        <a class="nav-link active" href="#tawasul" role="tab" data-toggle="tab">Tadarus </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Bersih</a>
+        <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">ramah lingkungan</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#references" role="tab" data-toggle="tab">Setting</a>
+        <a class="nav-link" href="#references" role="tab" data-toggle="tab">literasi</a>
     </li>
 </ul>
 
@@ -27,22 +27,24 @@ ABSEN
                     <th>Wali Kelas</th>
                     <th>Absen</th>
                     <th>Tugas</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($tawasul as $data)
+                @foreach($tawasul as $data_taw)
                     <tr>
-                        <td>{{ $data->nama_siswa }}</td>
-                        <td>{{ $data->kelas }}</td>
-                        <td>{{ $data->wali_kelas }}</td>
-                        <td>{{ $data->absen }}</td>
-                        <td>@if (!empty($data->tugas))
-                            <img src="../uploads/product/{{$data->tugas}}"
-                                alt="{{ $data->nama_siswa }}" width="50px" height="50px">
+                        <td>{{ $data_taw->nama_siswa }}</td>
+                        <td>{{ $data_taw->kelas }}</td>
+                        <td>{{ $data_taw->wali_kelas }}</td>
+                        <td>{{ $data_taw->absen }}</td>
+                        <td>@if (!empty($data_taw->tugas))
+                            <img src="{{asset('/uploads/product/'.$data_taw->tugas)}}"
+                                alt="{{ $data_taw->nama_siswa }}" width="50px" height="50px">
                         @else
-                            <p>tidak ada tugas/tugas belum di kerjakan</p>
+                            <p>tidak ada tugas/tugas belum di kumpulkan</p>
                         @endif
                         </td>
+                        <td><a href="{{route('tugas.destroy_taw',$data_taw->id)}}" class="btn btn-danger">Destroy</a></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -56,21 +58,60 @@ ABSEN
                     <th>Kelas</th>
                     <th>Wali Kelas</th>
                     <th>Absen</th>
+                    <th>Tugas</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($bersih as $data)
+                @foreach($bersih as $data_lit)
                     <tr>
-                        <td>{{ $data->nama_siswa }}</td>
-                        <td>{{ $data->kelas }}</td>
-                        <td>{{ $data->wali_kelas }}</td>
-                        <td>{{ $data->absen }}</td>
+                        <td>{{ $data_lit->nama_siswa }}</td>
+                        <td>{{ $data_lit->kelas }}</td>
+                        <td>{{ $data_lit->wali_kelas }}</td>
+                        <td>{{ $data_lit->absen }}</td>
+                        <td>@if (!empty($data_lit->tugas))
+                            <img src="{{asset('/uploads/product/'.$data_lit->tugas)}}"
+                                alt="{{ $data_lit->nama_siswa }}" width="50px" height="50px">
+                        @else
+                            <p>tidak ada tugas/tugas belum di kumpulkan</p>
+                        @endif
+                        <td><a href="{{route('tugas.destroy_lit',$data_lit->id)}}" class="btn btn-danger">Destroy</a></td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-    <div role="tabpanel" class="tab-pane fade" id="references">Ini Halaman Setting</div>
+    <div role="tabpanel" class="tab-pane fade" id="references">
+        <table id="bersih" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nama Siswa</th>
+                    <th>Kelas</th>
+                    <th>Wali Kelas</th>
+                    <th>Absen</th>
+                    <th>Tugas</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($literasi as $data_ber)
+                    <tr>
+                        <td>{{ $data_ber->nama_siswa }}</td>
+                        <td>{{ $data_ber->kelas }}</td>
+                        <td>{{ $data_ber->wali_kelas }}</td>
+                        <td>{{ $data_ber->absen }}</td>
+                        <td>@if (!empty($data_ber->tugas))
+                            <img src="{{asset('/uploads/product/'.$data_ber->tugas)}}"
+                                alt="{{ $data_ber->nama_siswa }}" width="50px" height="50px">
+                        @else
+                            <p>tidak ada tugas/tugas belum di kumpulkan</p>
+                        @endif
+                        <td><a href="{{route('tugas.destroy_ber',$data_ber->id)}}" class="btn btn-danger">Destroy</a></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
 @push('js')

@@ -24,34 +24,39 @@ Input Kegiatan
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Absen siswa kegiatan Tadarus</h3>
+                        <h3 class="card-title">Update siswa kegiatan Tadarus</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{route('tawasul.add')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('siswa.update.lit',$literasi->id)}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nama_siswa">Nama Siswa</label>
                                 <input type="text" class="form-control" id="nama_siswa" name="nama_siswa"
-                                    placeholder="masukan nama">
+                                    placeholder="{{$literasi->nama_siswa}}" value="{{$literasi->nama_siswa}}">
                             </div>
                             <div class="form-group">
                                 <label for="kelas">Kelas</label>
                                 <input type="text" class="form-control" id="kelas" name="kelas"
-                                    oninput="this.value = this.value.toUpperCase()" placeholder="masukan kelas">
+                                    oninput="this.value = this.value.toUpperCase()" placeholder="{{$literasi->kelas}}"
+                                    value="{{$literasi->kelas}}">
                                 <small style="color: red">contoh penulisan:&ensp;"XII-IPA-1"</small>
                             </div>
                             <div class="form-group">
                                 <label for="kelas">Wali Kelas</label>
-                                <input type="text" class="form-control" id="kelas" name="wali_kelas"
-                                    placeholder="masukan wali kelas">
+                                <input type="text" class="form-control" id="wali" name="wali_kelas"
+                                    value="{{$literasi->wali_kelas}}" placeholder="masukan wali kelas">
                             </div>
                             <div class="form-group" id="show-me">
                                 <label for="exampleInputFile">Input Tugas</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="tugas" id="tugas">
+                                        @if (!empty($literasi->Tugas))
+                                        <img src="{{ asset('uploads/product/' . $literasi->Tugas) }}"
+                                            alt="{{ $literasi->nama_siswa }}" width="150px" height="150px">
+                                        @endif
                                         <label class="custom-file-label" for="tugas">Input tugas</label>
                                     </div>
                                 </div>
@@ -59,25 +64,27 @@ Input Kegiatan
 
                             <div class="form-group">
                                 <label for="absen">Keterangan</label>
+
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="absen" id="hadir" value="hadir">
+                                    <input class="form-check-input" type="radio" name="absen" id="hadir" value="hadir" {{ $literasi->absen == 'hadir' ? 'checked' : '' }}>
                                     <label class="form-check-label">Hadir</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="absen" value="sakit">
+                                    <input class="form-check-input" type="radio" name="absen" value="sakit" {{ $literasi->absen == 'sakit' ? 'checked' : '' }}>
                                     <label class="form-check-label">Sakit</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="absen" value="izin">
+                                    <input class="form-check-input" type="radio" name="absen" value="izin" {{ $literasi->absen == 'izin' ? 'checked' : '' }}>
                                     <label class="form-check-label">izin</label>
                                 </div>
+
                             </div>
 
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>

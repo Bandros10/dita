@@ -23,12 +23,12 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Login</b>User</a>
+            <a href="#"><b>SMA</b> ANGKASA</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">{{ __('Login') }}</p>
+                <p class="login-box-msg">{{ __('Login') }} User</p>
 
                 <form method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}

@@ -4,9 +4,9 @@ Input Kegiatan
 @endsection
 @section('content')
 @if(session('success'))
-@alert(['type' => 'success'])
-{!! session('success') !!}
-@endalert
+    @alert(['type' => 'success'])
+        {!! session('success') !!}
+    @endalert
 @endif
 @section('css')
 <style>
@@ -24,11 +24,12 @@ Input Kegiatan
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Absen siswa kegiatan Tadarus</h3>
+                        <h3 class="card-title">Absen siswa kegiatan literasi</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{route('tawasul.add')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('literasi.add')}}" method="POST"
+                        enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="card-body">
                             <div class="form-group">
@@ -56,7 +57,6 @@ Input Kegiatan
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="absen">Keterangan</label>
                                 <div class="form-check">
@@ -86,6 +86,7 @@ Input Kegiatan
     </div>
 </section>
 @endsection
+@push('js')
 @push('js')
 <script>
     $(document).ready(function () {

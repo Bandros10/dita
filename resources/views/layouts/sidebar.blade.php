@@ -45,19 +45,19 @@
                             <li class="nav-item">
                                 <a href="{{ route('tawasul.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>tawasul</p>
+                                    <p>Tadarus</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('bersih.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>bersih bersih</p>
+                                    <p>ramah lingkungan</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ route('literasi.index') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v3</p>
+                                    <p>literasi</p>
                                 </a>
                             </li>
                         </ul>
@@ -72,7 +72,26 @@
                     </li>
                 @endif
 
-                @if(auth()->user()->role == 'admin'||'guru')
+                @if(auth()->user()->role == 'admin')
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Kelas
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('absen.siswa') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Absen</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+                @if(auth()->user()->role == 'guru')
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
