@@ -8,6 +8,14 @@ Input Kegiatan
         {!! session('success') !!}
     @endalert
 @endif
+@section('css')
+<style>
+    #show-me {
+        display: none;
+    }
+
+</style>
+@endsection
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -40,7 +48,7 @@ Input Kegiatan
                                 <input type="text" class="form-control" id="kelas" name="wali_kelas"
                                     placeholder="masukan wali kelas">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="show-me">
                                 <label for="exampleInputFile">Input Tugas</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -52,7 +60,7 @@ Input Kegiatan
                             <div class="form-group">
                                 <label for="absen">Keterangan</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="absen" value="hadir">
+                                    <input class="form-check-input" type="radio" name="absen" id="hadir" value="hadir">
                                     <label class="form-check-label">Hadir</label>
                                 </div>
                                 <div class="form-check">
@@ -78,3 +86,17 @@ Input Kegiatan
     </div>
 </section>
 @endsection
+@push('js')
+@push('js')
+<script>
+    $(document).ready(function () {
+        $('input[type="radio"]').click(function () {
+            if ($(this).attr('id') == 'hadir') {
+                $('#show-me').show();
+            } else {
+                $('#show-me').hide();
+            }
+        });
+    });
+</script>
+@endpush

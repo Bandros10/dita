@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth','checkRole:siswa']], function () {
     Route::post('/tugas/tawasul/add',[App\Http\Controllers\tugasController::class, 'tawasul_add'])->name('tawasul.add');
     Route::post('/tugas/bersih/add',[App\Http\Controllers\tugasController::class, 'bersih_add'])->name('bersih.add');
 
+    Route::get('tugas/siswa/{id}',[App\Http\Controllers\tugasController::class, 'tugas_kumpul'])->name('siswa.tugas');
 
     Route::get('absen/siswa',[App\Http\Controllers\absenController::class, 'absen'])->name('absen.siswa');
 });

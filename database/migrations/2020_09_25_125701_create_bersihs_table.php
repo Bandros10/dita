@@ -18,7 +18,7 @@ class CreateBersihsTable extends Migration
             $table->string('nama_siswa');
             $table->string('kelas');
             $table->string('wali_kelas');
-            $table->string('tugas');
+            $table->string('tugas')->nullable();
             $table->string('absen');
             $table->timestamps();
         });

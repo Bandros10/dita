@@ -6,6 +6,7 @@ use App\Models\bersih;
 use App\Models\tawasul;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
@@ -37,7 +38,7 @@ class tugasController extends Controller
 
     public function tawasul_add(Request $req){
         // dd($req->all());
-        try{
+        // try{
             $tugas = null;
             //jika terdapat file (Foto / Gambar) yang dikirim
             if ($req->hasFile('tugas')) {
@@ -52,14 +53,14 @@ class tugasController extends Controller
                 'absen' => $req->absen
             ]);
             return redirect('home')->with('sukses','tugas berhasil di input');
-        }catch(\Exception $e){
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+        // }catch(\Exception $e){
+        //     return redirect()->back()->with(['error' => $e->getMessage()]);
+        // }
     }
 
     public function bersih_add(Request $req){
         // dd($req->all());
-        // try{
+        try{
             $tugas = null;
             //jika terdapat file (Foto / Gambar) yang dikirim
             if ($req->hasFile('tugas')) {
@@ -73,9 +74,17 @@ class tugasController extends Controller
                 'tugas' => $tugas,
                 'absen' => $req->absen
             ]);
-            return redirect('home');
-        // }catch(\Exception $e){
-        //     return redirect()->back()->with(['error' => $e->getMessage()]);
-        // }
+            return redirect('home')->with('sukses','tugas berhasil di input');
+        }catch(\Exception $e){
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function tugas_kumpul($id){
+        // dd($id);
+        $edit_taw = DB::table('tawasuls')->where('nama_siswa',$id)->get();
+        $edit_ber = DB::table('bersihs')->where('nama_siswa',$id)->get();
+        // dd($edit_taw);
+        return view('tri.tugas_kumpul',compact('edit_taw','edit_ber'));
     }
 }

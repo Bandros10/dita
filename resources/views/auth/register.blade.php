@@ -48,19 +48,14 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control @error('role') is-invalid @enderror"
+                        <input type="hidden" class="form-control @error('role') is-invalid @enderror"
                             placeholder="{{ __('Role') }}" name="role"
-                            value="{{ old('role') }}" required autocomplete="role" autofocus>
+                            value="siswa" required autocomplete="role" autofocus>
                         @error('role')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
-                        </div>
                     </div>
                     <div class="input-group mb-3">
                         <input type="email" class="form-control @error('role') is-invalid @enderror"
