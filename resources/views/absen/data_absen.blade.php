@@ -18,7 +18,7 @@ ABSEN
 <!-- Tab panes -->
 <br>
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane fade in active" id="tawasul">
+    <div role="tabpanel" class="tab-pane fade show active" id="tawasul">
         <table id="itikab" class="table table-bordered">
             <thead>
                 <tr>

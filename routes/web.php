@@ -20,6 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::group(['middleware' => ['auth','checkRole:admin']], function () {
+    Route::get('/admin/index',[App\Http\Controllers\adminController::class,'admin_index'])->name('admin.index');
+    Route::post('/admin/add',[App\Http\Controllers\adminController::class,'admin_store'])->name('add.user');
+    Route::get('/admin/hapus/{User}',[App\Http\Controllers\adminController::class,'admin_hapus'])->name('user.destroy');
+});
+
 Route::group(['middleware' => ['auth','checkRole:siswa']], function () {
     Route::get('/tugas/Tadarus',[App\Http\Controllers\tugasController::class, 'tawasul_index'])->name('tawasul.index');
     Route::get('/tugas/bersih',[App\Http\Controllers\tugasController::class, 'bersih_index'])->name('bersih.index');
@@ -39,7 +45,7 @@ Route::group(['middleware' => ['auth','checkRole:siswa']], function () {
     Route::get('absen/siswa',[App\Http\Controllers\absenController::class, 'absen'])->name('absen.siswa');
 });
 
-Route::group(['middleware' => ['auth','checkRole:admin,guru']], function () {
+Route::group(['middleware' => ['auth','checkRole:admin,Kurikulum']], function () {
     Route::get('absen/siswa',[App\Http\Controllers\absenController::class, 'absen'])->name('absen.siswa');
     Route::get('tugas/destroy/Tadarus/{id}',[App\Http\Controllers\absenController::class, 'tugas_destroy_taw'])->name('tugas.destroy_taw');
     Route::get('tugas/destroy/bersih/{id}',[App\Http\Controllers\absenController::class, 'tugas_destroy_ber'])->name('tugas.destroy_ber');
