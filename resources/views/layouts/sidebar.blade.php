@@ -1,10 +1,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <img src="{{asset('/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{asset('/dist/img/angkasa.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="opacity: .8">
         <span
-            class="brand-text font-weight-light">{{ config('app.name', 'Laravel') }}</span>
+            class="brand-text font-weight-light">SMA ANGKASA</span>
     </a>
 
     <!-- Sidebar -->
@@ -77,21 +77,21 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Kelas
+                                USER
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('absen.siswa') }}" class="nav-link">
+                                <a href="{{route('admin.index')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Absen</p>
+                                    <p>Add User</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                 @endif
-                @if(auth()->user()->role == 'guru')
+                @if(auth()->user()->role == 'Kurikulum')
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>

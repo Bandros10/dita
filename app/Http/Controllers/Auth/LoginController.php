@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -33,6 +34,20 @@ class LoginController extends Controller
      *
      * @return void
      */
+    public function login(Request $request){
+        // dd($request);
+        $loginType = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+        $login = [
+            $loginType => $request->name,
+            'password' => $request->password
+        ];
+        if (auth()->attempt($login)) {
+        //JIKA BERHASIL, MAKA REDIRECT KE HALAMAN HOME
+            return redirect()->route('home');
+        }
+        //JIKA SALAH, MAKA KEMBALI KE LOGIN DAN TAMPILKAN NOTIFIKASI
+        return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

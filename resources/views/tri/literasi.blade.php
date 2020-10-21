@@ -34,8 +34,8 @@ Input Kegiatan
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nama_siswa">Nama Siswa</label>
-                                <input type="text" class="form-control" id="nama_siswa" name="nama_siswa"
-                                    placeholder="masukan nama">
+                                <input type="text" class="form-control" readonly id="nama_siswa" name="nama_siswa" value="{{auth()->user()->name}}"
+                                    placeholder="{{auth()->user()->name}}">
                             </div>
                             <div class="form-group">
                                 <label for="kelas">Kelas</label>
